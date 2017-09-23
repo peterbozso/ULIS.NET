@@ -1,14 +1,25 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Ulis.Net.Library
 {
     public class UlisClient
     {
-        private readonly MsTranslatorClient _translatorClient;
+        private readonly ITranslatorClient _translatorClient;
 
-        public UlisClient(string msTranslatorSubsriptionKey)
+        public UlisClient(TranslatorClients translatorClient, string subsriptionKey)
         {
-            _translatorClient = new MsTranslatorClient(msTranslatorSubsriptionKey);
+            switch (translatorClient)
+            {
+                case TranslatorClients.Microsoft:
+                    _translatorClient = new MsTranslatorClient(subsriptionKey);
+                    break;
+                case TranslatorClients.Google:
+                    _translatorClient = new GoogleTranslatorClient(subsriptionKey);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(translatorClient));
+            }
         }
 
         public async Task<string> Translate(string text)
