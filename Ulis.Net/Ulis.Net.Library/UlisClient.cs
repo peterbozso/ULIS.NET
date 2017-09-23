@@ -27,9 +27,9 @@ namespace Ulis.Net.Library
             _luisClient = new LuisClient(luisAppId, luisAppKey);
         }
 
-        public async Task<LuisResult> Query(string text)
+        public async Task<LuisResult> QueryAsync(string text)
         {
-            var englishText = await _translatorClient.Translate(text);
+            var englishText = await _translatorClient.TranslateAsync(text);
             return await _luisClient.Predict(englishText);
         }
     }

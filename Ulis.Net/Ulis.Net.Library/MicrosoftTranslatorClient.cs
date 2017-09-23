@@ -26,7 +26,7 @@ namespace Ulis.Net.Library
             _microsoftTranslatorApi = RestService.For<IMicrosoftTranslatorApi>(MicrosoftTranslatorApiUrlBase);
         }
 
-        public async Task<string> Translate(string text)
+        public async Task<string> TranslateAsync(string text)
         {
             var translatedXml = await _microsoftTranslatorApi.Translate(text, TargetLanguage, _subscriptionKey);
 

@@ -12,7 +12,7 @@ namespace Ulis.Net.Library
             _translationClient = TranslationClient.CreateFromApiKey(subscriptionKey);
         }
 
-        public async Task<string> Translate(string text)
+        public async Task<string> TranslateAsync(string text)
         {
             var result = await _translationClient.TranslateTextAsync(text, LanguageCodes.English);
             return result.TranslatedText;
