@@ -11,7 +11,7 @@ namespace Ulis.Net.Library
         Task<string> Translate(string text, string to, [Header("Ocp-Apim-Subscription-Key")] string subscriptionKey);
     }
 
-    class MicrosoftTranslatorClient : ITranslatorClient
+    public class MicrosoftTranslatorClient : ITranslatorClient
     {
         private const string MicrosoftTranslatorApiUrlBase = "https://api.microsofttranslator.com/V2/Http.svc/";
         private const string XmlDefaultNamespace = "http://schemas.microsoft.com/2003/10/Serialization/";

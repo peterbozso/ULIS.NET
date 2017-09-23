@@ -2,7 +2,7 @@
 
 namespace Ulis.Net.Library
 {
-    interface ITranslatorClient
+    public interface ITranslatorClient
     {
         Task<string> TranslateAsync(string text);
     }

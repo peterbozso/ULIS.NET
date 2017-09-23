@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Cognitive.LUIS;
 
 namespace Ulis.Net.Library
@@ -9,21 +8,9 @@ namespace Ulis.Net.Library
         private readonly LuisClient _luisClient;
         private readonly ITranslatorClient _translatorClient;
 
-        public UlisClient(TranslatorClients translatorClient, string translatorSubsriptionKey,
-            string luisAppId, string luisAppKey)
+        public UlisClient(ITranslatorClient translatorClient, string luisAppId, string luisAppKey)
         {
-            switch (translatorClient)
-            {
-                case TranslatorClients.Microsoft:
-                    _translatorClient = new MicrosoftTranslatorClient(translatorSubsriptionKey);
-                    break;
-                case TranslatorClients.Google:
-                    _translatorClient = new GoogleTranslatorClient(translatorSubsriptionKey);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(translatorClient));
-            }
-
+            _translatorClient = translatorClient;
             _luisClient = new LuisClient(luisAppId, luisAppKey);
         }
 

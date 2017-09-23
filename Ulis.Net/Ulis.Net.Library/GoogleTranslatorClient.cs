@@ -3,7 +3,7 @@ using Google.Cloud.Translation.V2;
 
 namespace Ulis.Net.Library
 {
-    class GoogleTranslatorClient : ITranslatorClient
+    public class GoogleTranslatorClient : ITranslatorClient
     {
         private readonly TranslationClient _translationClient;
 
