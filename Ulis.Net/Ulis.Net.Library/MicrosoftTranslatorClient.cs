@@ -5,30 +5,30 @@ using Refit;
 
 namespace Ulis.Net.Library
 {
-    interface IMsTranslatorApi
+    interface IMicrosoftTranslatorApi
     {
         [Get("/Translate?text={text}&to={to}")]
         Task<string> Translate(string text, string to, [Header("Ocp-Apim-Subscription-Key")] string subscriptionKey);
     }
 
-    class MsTranslatorClient : ITranslatorClient
+    class MicrosoftTranslatorClient : ITranslatorClient
     {
-        private const string MsTranslatorApiUrlBase = "https://api.microsofttranslator.com/V2/Http.svc/";
+        private const string MicrosoftTranslatorApiUrlBase = "https://api.microsofttranslator.com/V2/Http.svc/";
         private const string XmlDefaultNamespace = "http://schemas.microsoft.com/2003/10/Serialization/";
         private const string TargetLanguage = "en";
 
-        private readonly IMsTranslatorApi _msTranslatorApi;
+        private readonly IMicrosoftTranslatorApi _microsoftTranslatorApi;
         private readonly string _subscriptionKey;
 
-        public MsTranslatorClient(string subscriptionKey)
+        public MicrosoftTranslatorClient(string subscriptionKey)
         {
             _subscriptionKey = subscriptionKey;
-            _msTranslatorApi = RestService.For<IMsTranslatorApi>(MsTranslatorApiUrlBase);
+            _microsoftTranslatorApi = RestService.For<IMicrosoftTranslatorApi>(MicrosoftTranslatorApiUrlBase);
         }
 
         public async Task<string> Translate(string text)
         {
-            var translatedXml = await _msTranslatorApi.Translate(text, TargetLanguage, _subscriptionKey);
+            var translatedXml = await _microsoftTranslatorApi.Translate(text, TargetLanguage, _subscriptionKey);
 
             var xmlSerializer = new XmlSerializer(typeof(string), XmlDefaultNamespace);
             using (var reader = new StringReader(translatedXml))

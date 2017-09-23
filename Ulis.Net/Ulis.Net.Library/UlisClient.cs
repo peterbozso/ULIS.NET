@@ -12,7 +12,7 @@ namespace Ulis.Net.Library
             switch (translatorClient)
             {
                 case TranslatorClients.Microsoft:
-                    _translatorClient = new MsTranslatorClient(subsriptionKey);
+                    _translatorClient = new MicrosoftTranslatorClient(subsriptionKey);
                     break;
                 case TranslatorClients.Google:
                     _translatorClient = new GoogleTranslatorClient(subsriptionKey);
