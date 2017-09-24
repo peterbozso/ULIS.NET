@@ -1,6 +1,8 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleProgressBar;
 using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.Extensions.Configuration;
@@ -20,34 +22,49 @@ namespace Ulis.Net.Tools
 
         private static async Task MainAsync()
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json").Build();
-
-            var translatorClient = bool.Parse(config["UseMicrosoftTranslator"])
-                ? new MicrosoftTranslatorClient(config["MicrosoftSubscriptionKey"]) as ITranslatorClient
-                : new GoogleTranslatorClient(config["GoogleSubscriptionKey"]);
-
-            var ulisClient = new UlisClient(translatorClient, config["LuisAppId"], config["LuisAppKey"]);
-
-            using (var inputCsv = new CsvReader(File.OpenText(config["InputCsv"]),
-                new CsvConfiguration {HasHeaderRecord = false}))
-            using (var outputCsv = new CsvWriter(new StreamWriter(File.Create(config["OutputCsv"]), Encoding.UTF8)))
+            using (var progressBar = new ProgressBar())
             {
-                outputCsv.WriteField(Column0Header);
-                outputCsv.WriteField(Column1Header);
-                outputCsv.NextRecord();
+                progressBar.Progress.Report(0);
 
-                while (inputCsv.Read())
+                var config = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json").Build();
+
+                var translatorClient = bool.Parse(config["UseMicrosoftTranslator"])
+                    ? new MicrosoftTranslatorClient(config["MicrosoftSubscriptionKey"]) as ITranslatorClient
+                    : new GoogleTranslatorClient(config["GoogleSubscriptionKey"]);
+
+                var ulisClient = new UlisClient(translatorClient, config["LuisAppId"], config["LuisAppKey"]);
+
+                using (var inputCsv = new CsvReader(File.OpenText(config["InputCsv"]),
+                    new CsvConfiguration {HasHeaderRecord = false}))
+                using (var outputCsv = new CsvWriter(new StreamWriter(File.Create(config["OutputCsv"]), Encoding.UTF8)))
                 {
-                    var inputLine = inputCsv.GetField<string>(0);
-                    var result = await ulisClient.QueryAsync(inputLine);
-
-                    outputCsv.WriteField(inputLine);
-                    outputCsv.WriteField(result.OriginalQuery);
+                    outputCsv.WriteField(Column0Header);
+                    outputCsv.WriteField(Column1Header);
                     outputCsv.NextRecord();
+
+                    var inputLines = inputCsv.GetRecords<InputLine>().ToList();
+
+                    var processedCount = 0;
+                    foreach (var inputLine in inputLines)
+                    {
+                        var result = await ulisClient.QueryAsync(inputLine.OriginalText);
+
+                        outputCsv.WriteField(inputLine);
+                        outputCsv.WriteField(result.OriginalQuery);
+                        outputCsv.NextRecord();
+
+                        processedCount++;
+                        progressBar.Progress.Report((double) processedCount / inputLines.Count);
+                    }
                 }
             }
+        }
+
+        public class InputLine
+        {
+            public string OriginalText { get; set; }
         }
     }
 }
