@@ -12,6 +12,7 @@ namespace Ulis.Net.Tools
 {
     class Program
     {
+        private const string SettingsFileName = "appsettings.json";
         private const string Column0Header = "Original text";
         private const string Column1Header = "Translated text";
 
@@ -28,7 +29,7 @@ namespace Ulis.Net.Tools
 
                 var config = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json").Build();
+                    .AddJsonFile(SettingsFileName).Build();
 
                 var translatorClient = bool.Parse(config["UseMicrosoftTranslator"])
                     ? new MicrosoftTranslatorClient(config["MicrosoftSubscriptionKey"]) as ITranslatorClient
