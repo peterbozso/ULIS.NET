@@ -52,7 +52,7 @@ namespace Ulis.Net.Tools
                     {
                         var result = await ulisClient.QueryAsync(inputLine.OriginalText);
 
-                        outputCsv.WriteField(inputLine);
+                        outputCsv.WriteField(inputLine.OriginalText);
                         outputCsv.WriteField(result.OriginalQuery);
                         outputCsv.NextRecord();
 
