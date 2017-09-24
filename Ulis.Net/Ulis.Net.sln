@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ulis.Net.Library", "Ulis.Net.Library\Ulis.Net.Library.csproj", "{40297E68-56FC-435D-945B-79970B410349}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ulis.Net.Library", "Ulis.Net.Library\Ulis.Net.Library.csproj", "{40297E68-56FC-435D-945B-79970B410349}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ulis.Net.Tools", "Ulis.Net.Tools\Ulis.Net.Tools.csproj", "{6CB0A687-8A78-4884-8016-F6E57065E5AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ulis.Net.Tools", "Ulis.Net.Tools\Ulis.Net.Tools.csproj", "{6CB0A687-8A78-4884-8016-F6E57065E5AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ulis.Net.SampleBot", "Ulis.Net.SampleBot\Ulis.Net.SampleBot.csproj", "{FADAEFBD-7EB1-4D6A-974D-1C1DB08BA520}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6CB0A687-8A78-4884-8016-F6E57065E5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CB0A687-8A78-4884-8016-F6E57065E5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CB0A687-8A78-4884-8016-F6E57065E5AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADAEFBD-7EB1-4D6A-974D-1C1DB08BA520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADAEFBD-7EB1-4D6A-974D-1C1DB08BA520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADAEFBD-7EB1-4D6A-974D-1C1DB08BA520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADAEFBD-7EB1-4D6A-974D-1C1DB08BA520}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
