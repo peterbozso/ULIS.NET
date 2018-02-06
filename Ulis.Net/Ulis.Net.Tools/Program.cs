@@ -38,7 +38,7 @@ namespace Ulis.Net.Tools
                 var ulisClient = new UlisClient(translatorClient, config["LuisAppId"], config["LuisAppKey"]);
 
                 using (var inputCsv = new CsvReader(File.OpenText(config["InputCsv"]),
-                    new CsvConfiguration {HasHeaderRecord = false}))
+                    new Configuration { HasHeaderRecord = false}))
                 using (var outputCsv = new CsvWriter(new StreamWriter(File.Create(config["OutputCsv"]), Encoding.UTF8)))
                 {
                     outputCsv.WriteField(Column0Header);
