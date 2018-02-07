@@ -1,9 +1,7 @@
 ﻿using ConsoleProgressBar;
 using CsvHelper;
-using CsvHelper.Configuration;
 using Microsoft.Extensions.Configuration;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ulis.Net.Library;
@@ -50,8 +48,8 @@ namespace Ulis.Net.BulkImport
                     {
                         var result = await ulisClient.QueryAsync(inputLine);
 
-                        outputCsv.WriteField(inputLine);
-                        outputCsv.WriteField(result.Query);
+                        outputCsv.WriteField(result.OriginalQuery);
+                        outputCsv.WriteField(result.LuisResult.Query);
                         outputCsv.NextRecord();
 
                         processedCount++;

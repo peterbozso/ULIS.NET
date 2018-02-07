@@ -14,10 +14,16 @@ namespace Ulis.Net.Library
             _luisClient = new LuisClient(luisAppId, luisSubscriptionKey, luisRegion);
         }
 
-        public async Task<LuisResult> QueryAsync(string text)
+        public async Task<UlisResult> QueryAsync(string text)
         {
             var englishText = await _translatorClient.TranslateAsync(text);
-            return await _luisClient.QueryAsync(englishText);
+            var luisResult = await _luisClient.QueryAsync(englishText);
+
+            return new UlisResult
+            {
+                OriginalQuery = text,
+                LuisResult = luisResult
+            };
         }
     }
 }

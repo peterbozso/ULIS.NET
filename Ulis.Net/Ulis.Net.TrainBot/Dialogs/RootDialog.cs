@@ -19,11 +19,10 @@ namespace Ulis.Net.TrainBot.Dialogs
         {
             var activity = await result as Activity;
 
-            // calculate something for us to return
-            int length = (activity.Text ?? string.Empty).Length;
+            var ulisResult = await WebApiApplication.UlisClient.QueryAsync(activity.Text);
 
-            // return our reply to the user
-            await context.PostAsync($"You sent {activity.Text} which was {length} characters");
+            await context.PostAsync($"Translated as: {ulisResult.LuisResult.Query} \n\nTop scoring intent:" +
+                $"{ulisResult.LuisResult.TopScoringIntent.Intent} ({ulisResult.LuisResult.TopScoringIntent.Score})");
 
             context.Wait(MessageReceivedAsync);
         }
