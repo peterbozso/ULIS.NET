@@ -36,28 +36,26 @@ namespace Ulis.Net.BulkImport
                     : new GoogleTranslatorClient(config["GoogleSubscriptionKey"]);
 
                 var ulisClient = new UlisClient(translatorClient, config["LuisAppId"], config["LuisAppKey"], config["LuisRegion"]);
-
-                using (var inputCsv = new CsvReader(File.OpenText(config["InputCsv"]),
-                    new Configuration { HasHeaderRecord = false }))
+                
                 using (var outputCsv = new CsvWriter(new StreamWriter(File.Create(config["OutputCsv"]), Encoding.UTF8)))
                 {
                     outputCsv.WriteField(Column0Header);
                     outputCsv.WriteField(Column1Header);
                     outputCsv.NextRecord();
 
-                    var inputLines = inputCsv.GetRecords<InputLine>().ToList();
+                    var inputLines = File.ReadAllLines(config["InputText"]);
 
                     var processedCount = 0;
                     foreach (var inputLine in inputLines)
                     {
-                        var result = await ulisClient.QueryAsync(inputLine.OriginalText);
+                        var result = await ulisClient.QueryAsync(inputLine);
 
-                        outputCsv.WriteField(inputLine.OriginalText);
+                        outputCsv.WriteField(inputLine);
                         outputCsv.WriteField(result.Query);
                         outputCsv.NextRecord();
 
                         processedCount++;
-                        progressBar.Progress.Report((double)processedCount / inputLines.Count);
+                        progressBar.Progress.Report((double)processedCount / inputLines.Length);
                     }
                 }
             }
