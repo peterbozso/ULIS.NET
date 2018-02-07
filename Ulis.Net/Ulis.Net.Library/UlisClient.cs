@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Cognitive.LUIS;
+using Ulis.Net.Library.Luis;
 
 namespace Ulis.Net.Library
 {
@@ -8,16 +8,16 @@ namespace Ulis.Net.Library
         private readonly LuisClient _luisClient;
         private readonly ITranslatorClient _translatorClient;
 
-        public UlisClient(ITranslatorClient translatorClient, string luisAppId, string luisAppKey)
+        public UlisClient(ITranslatorClient translatorClient, string luisAppId, string luisSubscriptionKey, string luisRegion)
         {
             _translatorClient = translatorClient;
-            _luisClient = new LuisClient(luisAppId, luisAppKey);
+            _luisClient = new LuisClient(luisAppId, luisSubscriptionKey, luisRegion);
         }
 
         public async Task<LuisResult> QueryAsync(string text)
         {
             var englishText = await _translatorClient.TranslateAsync(text);
-            return await _luisClient.Predict(englishText);
+            return await _luisClient.QueryAsync(englishText);
         }
     }
 }
