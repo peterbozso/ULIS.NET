@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Google.Cloud.Translation.V2;
+﻿using Google.Cloud.Translation.V2;
+using System.Threading.Tasks;
 
 namespace Ulis.Net.Library
 {

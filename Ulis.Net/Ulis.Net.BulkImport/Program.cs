@@ -1,16 +1,16 @@
-﻿using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ConsoleProgressBar;
+﻿using ConsoleProgressBar;
 using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.Extensions.Configuration;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Ulis.Net.Library;
 
 namespace Ulis.Net.BulkImport
 {
-    class Program
+    internal class Program
     {
         private const string SettingsFileName = "appsettings.json";
         private const string Column0Header = "Original text";

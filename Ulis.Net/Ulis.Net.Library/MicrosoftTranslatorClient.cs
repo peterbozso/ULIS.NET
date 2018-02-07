@@ -1,11 +1,11 @@
-﻿using System.IO;
+﻿using Refit;
+using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using Refit;
 
 namespace Ulis.Net.Library
 {
-    interface IMicrosoftTranslatorApi
+    internal interface IMicrosoftTranslatorApi
     {
         [Get("/Translate?text={text}&to={to}")]
         Task<string> Translate(string text, string to, [Header("Ocp-Apim-Subscription-Key")] string subscriptionKey);
@@ -33,7 +33,7 @@ namespace Ulis.Net.Library
             var xmlSerializer = new XmlSerializer(typeof(string), XmlDefaultNamespace);
             using (var reader = new StringReader(translatedXml))
             {
-                return (string) xmlSerializer.Deserialize(reader);
+                return (string)xmlSerializer.Deserialize(reader);
             }
         }
     }
