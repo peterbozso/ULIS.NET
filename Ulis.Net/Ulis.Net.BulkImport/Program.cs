@@ -60,10 +60,5 @@ namespace Ulis.Net.BulkImport
                 }
             }
         }
-
-        public class InputLine
-        {
-            public string OriginalText { get; set; }
-        }
     }
 }
