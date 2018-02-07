@@ -8,7 +8,7 @@ using CsvHelper.Configuration;
 using Microsoft.Extensions.Configuration;
 using Ulis.Net.Library;
 
-namespace Ulis.Net.Tools
+namespace Ulis.Net.BulkImport
 {
     class Program
     {
