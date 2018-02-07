@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ulis.Net.SampleBot")]
+[assembly: AssemblyTitle("Ulis.Net.TrainBot")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Ulis.Net.SampleBot")]
+[assembly: AssemblyProduct("Ulis.Net.TrainBot")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fadaefbd-7eb1-4d6a-974d-1c1db08ba520")]
+[assembly: Guid("cbf7ebb5-f452-481c-a70b-0a9dc0e50d0d")]
 
 // Version information for an assembly consists of the following four values:
 //

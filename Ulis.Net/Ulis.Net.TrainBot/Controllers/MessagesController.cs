@@ -5,7 +5,7 @@ using System.Web.Http;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
-namespace Ulis.Net.SampleBot.Controllers
+namespace Ulis.Net.TrainBot
 {
     [BotAuthentication]
     public class MessagesController : ApiController

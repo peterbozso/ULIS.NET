@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
-namespace Ulis.Net.SampleBot.Dialogs
+namespace Ulis.Net.TrainBot.Dialogs
 {
     [Serializable]
     public class RootDialog : IDialog<object>
