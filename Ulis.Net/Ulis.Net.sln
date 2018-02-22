@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ulis.Net.Library", "Ulis.Net.Library\Ulis.Net.Library.csproj", "{40297E68-56FC-435D-945B-79970B410349}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ulis.Net.TrainBot", "Ulis.Net.TrainBot\Ulis.Net.TrainBot.csproj", "{CBF7EBB5-F452-481C-A70B-0A9DC0E50D0D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ulis.Net.BulkImport", "Ulis.Net.BulkImport\Ulis.Net.BulkImport.csproj", "{E8CB7C98-5AB1-49DE-A1A7-81287B74AD9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ulis.Net.Dialog", "Ulis.Net.Dialog\Ulis.Net.Dialog.csproj", "{F13084A0-5C8F-4986-A0FF-E8F6768B4D5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ulis.Net.TrainBot", "Ulis.Net.TrainBot\Ulis.Net.TrainBot.csproj", "{0FF21554-D65D-4B44-9790-CE0F606A2762}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{40297E68-56FC-435D-945B-79970B410349}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40297E68-56FC-435D-945B-79970B410349}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40297E68-56FC-435D-945B-79970B410349}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CBF7EBB5-F452-481C-A70B-0A9DC0E50D0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBF7EBB5-F452-481C-A70B-0A9DC0E50D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBF7EBB5-F452-481C-A70B-0A9DC0E50D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CBF7EBB5-F452-481C-A70B-0A9DC0E50D0D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E8CB7C98-5AB1-49DE-A1A7-81287B74AD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E8CB7C98-5AB1-49DE-A1A7-81287B74AD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8CB7C98-5AB1-49DE-A1A7-81287B74AD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8CB7C98-5AB1-49DE-A1A7-81287B74AD9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F13084A0-5C8F-4986-A0FF-E8F6768B4D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F13084A0-5C8F-4986-A0FF-E8F6768B4D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13084A0-5C8F-4986-A0FF-E8F6768B4D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F13084A0-5C8F-4986-A0FF-E8F6768B4D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FF21554-D65D-4B44-9790-CE0F606A2762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF21554-D65D-4B44-9790-CE0F606A2762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF21554-D65D-4B44-9790-CE0F606A2762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF21554-D65D-4B44-9790-CE0F606A2762}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

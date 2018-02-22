@@ -1,30 +1,35 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Connector;
+using Microsoft.Bot.Builder.Luis;
+using Microsoft.Bot.Builder.Luis.Models;
 using System;
 using System.Threading.Tasks;
+using System.Web.Configuration;
+using Ulis.Net.Dialog;
 
 namespace Ulis.Net.TrainBot.Dialogs
 {
     [Serializable]
-    public class RootDialog : IDialog<object>
+    public class RootDialog : UlisDialog<object>
     {
-        public Task StartAsync(IDialogContext context)
-        {
-            context.Wait(MessageReceivedAsync);
+        private static LuisService LuisService =>
+            new LuisService(
+                new LuisModelAttribute(WebConfigurationManager.AppSettings["LuisModelId"],
+                    WebConfigurationManager.AppSettings["LuisSubscriptionKey"],
+                    domain: WebConfigurationManager.AppSettings["LuisDomain"]));
 
-            return Task.CompletedTask;
+        public RootDialog() : base(LuisService)
+        {
         }
 
-        private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
+        [LuisIntent("")]
+        [LuisIntent("None")]
+        public async Task None(IDialogContext context, LuisResult result)
         {
-            var activity = await result as Activity;
+            string message = $"Sorry, I did not understand '{result.Query}'.";
 
-            var ulisResult = await WebApiApplication.UlisClient.QueryAsync(activity.Text);
+            await context.PostAsync(message);
 
-            await context.PostAsync($"Translated as: {ulisResult.LuisResult.Query} \n\nTop scoring intent:" +
-                $"{ulisResult.LuisResult.TopScoringIntent.Intent} ({ulisResult.LuisResult.TopScoringIntent.Score})");
-
-            context.Wait(MessageReceivedAsync);
+            context.Wait(this.MessageReceived);
         }
     }
 }
