@@ -1,6 +1,8 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
+using Microsoft.Bot.Connector;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 using System.Web.Configuration;
@@ -17,19 +19,24 @@ namespace Ulis.Net.TrainBot.Dialogs
                     WebConfigurationManager.AppSettings["LuisSubscriptionKey"],
                     domain: WebConfigurationManager.AppSettings["LuisDomain"]));
 
-        public RootDialog() : base(LuisService)
+        private static TranslatorClientSerializationWrapper Translator =>
+            new TranslatorClientSerializationWrapper(
+                (TranslationProvider)Enum.Parse(typeof(TranslationProvider), WebConfigurationManager.AppSettings["TranslatorProvider"]),
+                WebConfigurationManager.AppSettings["TranslatorSubscriptionKey"]);
+
+        public RootDialog() : base(Translator, LuisService)
         {
         }
 
-        [LuisIntent("")]
-        [LuisIntent("None")]
-        public async Task None(IDialogContext context, LuisResult result)
+        protected override async Task DispatchToIntentHandler(IDialogContext context, IAwaitable<IMessageActivity> item,
+           IntentRecommendation bestIntent, LuisResult result)
         {
-            string message = $"Sorry, I did not understand '{result.Query}'.";
-
+            string message =
+                $"ULIS translated that as: {result.Query}\n\n" +
+                $"Intent: {result.TopScoringIntent.Intent} | Score: {result.TopScoringIntent.Score}\n\n" +
+                $"Entities: {JsonConvert.SerializeObject(result.Entities)}";
             await context.PostAsync(message);
-
-            context.Wait(this.MessageReceived);
+            context.Done(0);
         }
     }
 }
