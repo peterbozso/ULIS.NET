@@ -5,12 +5,6 @@ using Ulis.Net.Library;
 
 namespace Ulis.Net.Dialog
 {
-    public enum TranslationProvider
-    {
-        Microsoft,
-        Google
-    }
-
     /// <summary>
     /// Needed because of this: https://github.com/dotnet/standard/issues/300
     /// Essentially our ITranslatorClient implementations cannot be made Serializable, so we wrap them this way.
@@ -21,8 +15,8 @@ namespace Ulis.Net.Dialog
         [NonSerialized]
         private ITranslatorClient _translationClient;
 
-        private readonly string _subscriptionKey;
         private readonly TranslationProvider _translationProvider;
+        private readonly string _subscriptionKey;
 
         public TranslatorClientSerializationWrapper(TranslationProvider translationProvider, string subscriptionKey)
         {

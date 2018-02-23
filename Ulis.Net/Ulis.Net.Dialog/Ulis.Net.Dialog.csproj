@@ -90,8 +90,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TranslationProvider.cs" />
     <Compile Include="TranslatorClientSerializationWrapper.cs" />
     <Compile Include="UlisDialog.cs" />
+    <Compile Include="UlisTranslatorAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
