@@ -6,27 +6,27 @@ namespace Ulis.Net.Library.Luis
 {
     internal interface ILuisApi
     {
-        [Get(@"/{appId}?subscription-key={subscriptionKey}&staging={staging}
+        [Get(@"/{modelId}?subscription-key={subscriptionKey}&staging={staging}
                 &verbose={verbose}&timezoneOffset={timezoneOffset}&q={query}")]
-        Task<string> Query(string appId, string subscriptionKey, bool staging, bool verbose,
+        Task<string> Query(string modelId, string subscriptionKey, bool staging, bool verbose,
             int timezoneOffset, string query);
     }
 
     internal class LuisClient
     {
-        private readonly string _region, _appId, _subscriptionKey;
+        private readonly string _domain, _modelId, _subscriptionKey;
         private readonly bool _staging, _verbose;
         private readonly int _timezoneOffset;
         private readonly ILuisApi _luisApi;
 
-        private string LuisApiUrlBase => $"https://{_region}.api.cognitive.microsoft.com/luis/v2.0/apps/";
+        private string LuisApiUrlBase => $"https://{_domain}/luis/v2.0/apps/";
 
-        public LuisClient(string appId, string subscriptionKey, string region = "westus",
+        public LuisClient(string modelId, string subscriptionKey, string domain = "westus.api.cognitive.microsoft.com",
             bool staging = false, bool verbose = false, int timezoneOffset = 0)
         {
-            _appId = appId;
+            _modelId = modelId;
             _subscriptionKey = subscriptionKey;
-            _region = region;
+            _domain = domain;
             _staging = staging;
             _verbose = verbose;
             _timezoneOffset = timezoneOffset;
@@ -37,7 +37,7 @@ namespace Ulis.Net.Library.Luis
         public async Task<LuisResult> QueryAsync(string query)
         {
             return JsonConvert.DeserializeObject<LuisResult>(
-                await _luisApi.Query(_appId, _subscriptionKey, _staging, _verbose, _timezoneOffset, query));
+                await _luisApi.Query(_modelId, _subscriptionKey, _staging, _verbose, _timezoneOffset, query));
         }
     }
 }

@@ -29,11 +29,12 @@ namespace Ulis.Net.BulkImport
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile(SettingsFileName).Build();
 
-                var translatorClient = bool.Parse(config["UseMicrosoftTranslator"])
-                    ? new MicrosoftTranslatorClient(config["MicrosoftSubscriptionKey"]) as ITranslatorClient
-                    : new GoogleTranslatorClient(config["GoogleSubscriptionKey"]);
+                var translatorClient = config["TranslatorProvider"] == "Microsoft"
+                    ? new MicrosoftTranslatorClient(config["TranslatorSubscriptionKey"]) as ITranslatorClient
+                    : new GoogleTranslatorClient(config["TranslatorSubscriptionKey"]);
 
-                var ulisClient = new UlisClient(translatorClient, config["LuisAppId"], config["LuisAppKey"], config["LuisRegion"]);
+                var ulisClient = new UlisClient(translatorClient,
+                    config["LuisModelId"], config["LuisSubscriptionKey"], config["LuisDomain"]);
                 
                 using (var outputCsv = new CsvWriter(new StreamWriter(File.Create(config["OutputCsv"]), Encoding.UTF8)))
                 {

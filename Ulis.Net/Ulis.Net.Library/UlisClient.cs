@@ -8,10 +8,11 @@ namespace Ulis.Net.Library
         private readonly LuisClient _luisClient;
         private readonly ITranslatorClient _translatorClient;
 
-        public UlisClient(ITranslatorClient translatorClient, string luisAppId, string luisSubscriptionKey, string luisRegion)
+        public UlisClient(ITranslatorClient translatorClient,
+            string luisModelId, string luisSubscriptionKey, string luisDomain)
         {
             _translatorClient = translatorClient;
-            _luisClient = new LuisClient(luisAppId, luisSubscriptionKey, luisRegion);
+            _luisClient = new LuisClient(luisModelId, luisSubscriptionKey, luisDomain);
         }
 
         public async Task<UlisResult> QueryAsync(string text)
