@@ -42,7 +42,7 @@ namespace Ulis.Net.BulkImport
                     outputCsv.WriteField(Column1Header);
                     outputCsv.NextRecord();
 
-                    var inputLines = File.ReadAllLines(config["InputText"]);
+                    var inputLines = File.ReadAllLines(config["InputText"], Encoding.UTF8);
 
                     var processedCount = 0;
                     foreach (var inputLine in inputLines)
