@@ -5,9 +5,8 @@ For detailed description and use cases, please refer to [this article](https://w
 
 It mostly implements the same set of functionalities, but it's not a 100% copy of the original.
 The main difference is that it contains a [UlisDialog](https://github.com/peterbozso/ULIS.NET/blob/master/Ulis.Net/Ulis.Net.Dialog/UlisDialog.cs) class, which you can reuse in your own C# bots.
-You can also choose which translation provider you want to use. Currently Microsoft and Google translators are supported,
-but you are free to add your own implementation by using the
-[ITranslatorClient](https://github.com/peterbozso/ULIS.NET/blob/master/Ulis.Net/Ulis.Net.Library/ITranslatorClient.cs) interface.
+You can also choose which translation provider you want to use, so you can go with the one that produces the better results for your language.
+Currently Microsoft and Google translators are supported, but you are free to add your own implementation by using the [ITranslatorClient](https://github.com/peterbozso/ULIS.NET/blob/master/Ulis.Net/Ulis.Net.Library/ITranslatorClient.cs) interface.
 
 Issues, suggestions and pull requests are very welcome!
 
@@ -40,7 +39,7 @@ For more details, please refer to [this article](https://www.microsoft.com/devel
   When you are using this package, you are also implicitly pulling into your project the Ulis.Net.Library one.
   Since that one is a .NET Standard library, and you are trying to use it in a C# bot, which is a .NET Framework project, you'll get runtime exceptions.
   More on this issue can be found here: https://github.com/dotnet/standard/issues/481
-  Luckily, there's an easy workaround: when you compile your bot using this library for the first time, you'll get a very warning in your "Error List" window in Visual Studio.
+  Luckily, there's an easy workaround: when you compile your bot using this library for the first time, you'll get a very long warning in your "Error List" window in Visual Studio.
   It will start like: "Found conflicts between different versions of the same dependent assembly. In Visual Studio, double-click this warning (or select it and press Enter) to fix the conflicts..."
   So please do as it suggests to avoid those nasty runtime exceptions. :)
 * [Ulis.Net.Library NuGet package](https://www.nuget.org/packages/Ulis.Net.Library/)
