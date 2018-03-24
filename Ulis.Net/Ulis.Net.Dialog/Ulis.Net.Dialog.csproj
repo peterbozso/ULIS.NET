@@ -110,13 +110,13 @@
     <PackageReference Include="Chronic.Signed" Version="0.3.2" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.4" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.4" />
-    <PackageReference Include="Microsoft.Bot.Builder" Version="3.13.1" />
-    <PackageReference Include="Microsoft.Bot.Connector" Version="3.13.1" />
+    <PackageReference Include="Microsoft.Bot.Builder" Version="3.14.1.1" />
+    <PackageReference Include="Microsoft.Bot.Connector" Version="3.14.1.1" />
     <PackageReference Include="Microsoft.IdentityModel.Logging" Version="5.2.1" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.2.1" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.2.1" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.1" />
-    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.10" />
+    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.11" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.1" />
   </ItemGroup>
