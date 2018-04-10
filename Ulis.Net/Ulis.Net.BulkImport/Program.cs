@@ -29,9 +29,10 @@ namespace Ulis.Net.BulkImport
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile(SettingsFileName).Build();
 
+                var translatorSubscriptionKey = config["TranslatorSubscriptionKey"];
                 var translatorClient = config["TranslatorProvider"] == "Microsoft"
-                    ? new MicrosoftTranslatorClient(config["TranslatorSubscriptionKey"]) as ITranslatorClient
-                    : new GoogleTranslatorClient(config["TranslatorSubscriptionKey"]);
+                    ? new MicrosoftTranslatorClient(translatorSubscriptionKey) as ITranslatorClient
+                    : new GoogleTranslatorClient(translatorSubscriptionKey);
 
                 var ulisClient = new UlisClient(translatorClient,
                     config["LuisModelId"], config["LuisSubscriptionKey"], config["LuisDomain"]);
