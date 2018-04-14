@@ -5,10 +5,6 @@ using Ulis.Net.Library;
 
 namespace Ulis.Net.Dialog.Translators
 {
-    /// <summary>
-    /// Needed because of this: https://github.com/dotnet/standard/issues/300
-    /// Essentially our ITranslatorClient implementations cannot be made Serializable, so we wrap them this way.
-    /// </summary>
     [Serializable]
     public abstract class TranslatorWrapperBase : ITranslatorClient
     {
