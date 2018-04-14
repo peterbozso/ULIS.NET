@@ -4,6 +4,7 @@ using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Web.Configuration;
 using Ulis.Net.Dialog;
@@ -13,16 +14,23 @@ namespace Ulis.Net.TrainBot.Dialogs
     [Serializable]
     public class RootDialog : UlisDialog<object>
     {
+        private static NameValueCollection Config => WebConfigurationManager.AppSettings;
+
         private static LuisService LuisService =>
             new LuisService(
-                new LuisModelAttribute(WebConfigurationManager.AppSettings["LuisModelId"],
-                    WebConfigurationManager.AppSettings["LuisSubscriptionKey"],
-                    domain: WebConfigurationManager.AppSettings["LuisDomain"]));
+                new LuisModelAttribute(Config["LuisModelId"], Config["LuisSubscriptionKey"], domain: Config["LuisDomain"]));
 
-        private static TranslatorClientSerializationWrapper Translator =>
-            new TranslatorClientSerializationWrapper(
-                (TranslationProvider)Enum.Parse(typeof(TranslationProvider), WebConfigurationManager.AppSettings["TranslatorProvider"]),
-                WebConfigurationManager.AppSettings["TranslatorSubscriptionKey"]);
+        private static TranslatorWrapperBase Translator
+        {
+            get
+            {
+                var subscriptionKey = Config["TranslatorSubscriptionKey"];
+
+                return Config["TranslatorProvider"] == "Microsoft"
+                    ? new MicrosoftTranslatorWrapper(subscriptionKey) as TranslatorWrapperBase
+                    : new GoogleTranslatorWrapper(subscriptionKey);
+            }
+        }
 
         public RootDialog() : base(Translator, LuisService)
         {

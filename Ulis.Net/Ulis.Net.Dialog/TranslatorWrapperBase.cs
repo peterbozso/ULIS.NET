@@ -15,13 +15,6 @@ namespace Ulis.Net.Dialog
         [NonSerialized]
         protected ITranslatorClient _translationClient;
 
-        protected readonly string _subscriptionKey;
-
-        protected TranslatorWrapperBase(string subscriptionKey)
-        {
-            _subscriptionKey = subscriptionKey;
-        }
-
         public async Task<string> TranslateAsync(string text)
         {
             return await _translationClient.TranslateAsync(text);

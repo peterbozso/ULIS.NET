@@ -6,13 +6,13 @@ namespace Ulis.Net.Dialog
     [Serializable]
     public class UlisTranslatorAttribute : Attribute
     {
-        public TranslationProvider TranslationProvider { get; }
-        public string SubscriptionKey { get; }
+        //public TranslationProvider TranslationProvider { get; }
+        //public string SubscriptionKey { get; }
 
-        public UlisTranslatorAttribute(TranslationProvider translationProvider, string subscriptionKey)
-        {
-            TranslationProvider = translationProvider;
-            SubscriptionKey = subscriptionKey;
-        }
+        //public UlisTranslatorAttribute(TranslationProvider translationProvider, string subscriptionKey)
+        //{
+        //    TranslationProvider = translationProvider;
+        //    SubscriptionKey = subscriptionKey;
+        //}
     }
 }

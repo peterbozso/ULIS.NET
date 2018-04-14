@@ -6,24 +6,25 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Ulis.Net.Library;
 
 namespace Ulis.Net.Dialog
 {
     [Serializable]
     public class UlisDialog<TResult> : LuisDialog<TResult>
     {
-        private readonly TranslatorClientSerializationWrapper _translator;
+        private readonly ITranslatorClient _translator;
 
-        public UlisDialog(TranslatorClientSerializationWrapper translator = null,
+        public UlisDialog(TranslatorWrapperBase translator = null,
             params ILuisService[] services) : base(services)
         {
-            if (translator == null)
-            {
-                var translatorAttribute =
-                    GetType().GetCustomAttributes<UlisTranslatorAttribute>(inherit: true).FirstOrDefault();
-                translator = new TranslatorClientSerializationWrapper(
-                    translatorAttribute.TranslationProvider, translatorAttribute.SubscriptionKey);
-            }
+            //if (translator == null)
+            //{
+            //    var translatorAttribute =
+            //        GetType().GetCustomAttributes<UlisTranslatorAttribute>(inherit: true).FirstOrDefault();
+            //    translator = new TranslatorClientSerializationWrapper(
+            //        translatorAttribute.TranslationProvider, translatorAttribute.SubscriptionKey);
+            //}
 
             SetField.NotNull(out _translator, nameof(translator), translator);
         }

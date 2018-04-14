@@ -1,11 +1,16 @@
-﻿using Ulis.Net.Library;
+﻿using System;
+using Ulis.Net.Library;
 
 namespace Ulis.Net.Dialog
 {
+    [Serializable]
     public class GoogleTranslatorWrapper : TranslatorWrapperBase
     {
-        protected GoogleTranslatorWrapper(string subscriptionKey) : base(subscriptionKey)
+        private readonly string _subscriptionKey;
+
+        public GoogleTranslatorWrapper(string subscriptionKey)
         {
+            _subscriptionKey = subscriptionKey;
             SetTranslatorClient();
         }
 

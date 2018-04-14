@@ -1,11 +1,16 @@
-﻿using Ulis.Net.Library;
+﻿using System;
+using Ulis.Net.Library;
 
 namespace Ulis.Net.Dialog
 {
+    [Serializable]
     public class MicrosoftTranslatorWrapper : TranslatorWrapperBase
     {
-        protected MicrosoftTranslatorWrapper(string subscriptionKey) : base(subscriptionKey)
+        private readonly string _subscriptionKey;
+
+        public MicrosoftTranslatorWrapper(string subscriptionKey)
         {
+            _subscriptionKey = subscriptionKey;
             SetTranslatorClient();
         }
 
