@@ -15,8 +15,7 @@ namespace Ulis.Net.Dialog
     {
         private readonly ITranslatorClient _translator;
 
-        public UlisDialog(TranslatorWrapperBase translator = null,
-            params ILuisService[] services) : base(services)
+        public UlisDialog(TranslatorWrapperBase translator = null, params ILuisService[] services) : base(services)
         {
             //if (translator == null)
             //{
