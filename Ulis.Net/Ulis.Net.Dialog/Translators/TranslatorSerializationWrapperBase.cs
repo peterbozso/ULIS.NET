@@ -6,7 +6,7 @@ using Ulis.Net.Library;
 namespace Ulis.Net.Dialog.Translators
 {
     [Serializable]
-    public abstract class TranslatorWrapperBase : ITranslatorClient
+    public abstract class TranslatorSerializationWrapperBase : ITranslatorClient
     {
         [NonSerialized]
         protected ITranslatorClient _translationClient;

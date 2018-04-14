@@ -7,6 +7,6 @@ namespace Ulis.Net.Dialog.Attributes
     [Serializable]
     public abstract class TranslatorAttributeBase : Attribute
     {
-        public abstract TranslatorWrapperBase TranslatorWrapper { get; }
+        public abstract TranslatorSerializationWrapperBase TranslatorWrapper { get; }
     }
 }

@@ -21,14 +21,14 @@ namespace Ulis.Net.TrainBot.Dialogs
             new LuisService(
                 new LuisModelAttribute(Config["LuisModelId"], Config["LuisSubscriptionKey"], domain: Config["LuisDomain"]));
 
-        private static TranslatorWrapperBase Translator
+        private static TranslatorSerializationWrapperBase Translator
         {
             get
             {
                 var subscriptionKey = Config["TranslatorSubscriptionKey"];
 
                 return Config["TranslatorProvider"] == "Microsoft"
-                    ? new MicrosoftTranslatorWrapper(subscriptionKey) as TranslatorWrapperBase
+                    ? new MicrosoftTranslatorWrapper(subscriptionKey) as TranslatorSerializationWrapperBase
                     : new GoogleTranslatorWrapper(subscriptionKey);
             }
         }

@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translators\GoogleTranslatorWrapper.cs" />
     <Compile Include="Translators\MicrosoftTranslatorWrapper.cs" />
-    <Compile Include="Translators\TranslatorWrapperBase.cs" />
+    <Compile Include="Translators\TranslatorSerializationWrapperBase.cs" />
     <Compile Include="UlisDialog.cs" />
   </ItemGroup>
   <ItemGroup>

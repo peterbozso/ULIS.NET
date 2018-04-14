@@ -4,7 +4,7 @@ using Ulis.Net.Library;
 namespace Ulis.Net.Dialog.Translators
 {
     [Serializable]
-    public class MicrosoftTranslatorWrapper : TranslatorWrapperBase
+    public class MicrosoftTranslatorWrapper : TranslatorSerializationWrapperBase
     {
         private readonly string _subscriptionKey;
 

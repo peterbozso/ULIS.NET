@@ -7,7 +7,7 @@ namespace Ulis.Net.Dialog.Attributes
     [Serializable]
     public class GoogleTranslatorAttribute : TranslatorAttributeBase
     {
-        public override TranslatorWrapperBase TranslatorWrapper { get; }
+        public override TranslatorSerializationWrapperBase TranslatorWrapper { get; }
 
         public GoogleTranslatorAttribute(string subscriptionKey)
         {

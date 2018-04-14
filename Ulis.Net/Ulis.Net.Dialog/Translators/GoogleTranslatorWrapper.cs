@@ -4,7 +4,7 @@ using Ulis.Net.Library;
 namespace Ulis.Net.Dialog.Translators
 {
     [Serializable]
-    public class GoogleTranslatorWrapper : TranslatorWrapperBase
+    public class GoogleTranslatorWrapper : TranslatorSerializationWrapperBase
     {
         private readonly string _subscriptionKey;
 

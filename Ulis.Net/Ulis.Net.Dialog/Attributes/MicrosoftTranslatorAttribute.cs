@@ -7,7 +7,7 @@ namespace Ulis.Net.Dialog.Attributes
     [Serializable]
     public class MicrosoftTranslatorAttribute : TranslatorAttributeBase
     {
-        public override TranslatorWrapperBase TranslatorWrapper { get; }
+        public override TranslatorSerializationWrapperBase TranslatorWrapper { get; }
 
         public MicrosoftTranslatorAttribute(string subscriptionKey)
         {
