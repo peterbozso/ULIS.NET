@@ -28,8 +28,9 @@ namespace Ulis.Net.TrainBot.Dialogs
                 var subscriptionKey = Config["TranslatorSubscriptionKey"];
 
                 return Config["TranslatorProvider"] == "Microsoft"
-                    ? new MicrosoftTranslatorWrapper(subscriptionKey) as TranslatorSerializationWrapperBase
-                    : new GoogleTranslatorWrapper(subscriptionKey);
+                    ? new MicrosoftTranslatorWrapper(subscriptionKey)
+                    : new GoogleTranslatorWrapper(subscriptionKey)
+                    as TranslatorSerializationWrapperBase;
             }
         }
 

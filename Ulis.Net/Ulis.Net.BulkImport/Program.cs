@@ -31,8 +31,9 @@ namespace Ulis.Net.BulkImport
 
                 var translatorSubscriptionKey = config["TranslatorSubscriptionKey"];
                 var translatorClient = config["TranslatorProvider"] == "Microsoft"
-                    ? new MicrosoftTranslatorClient(translatorSubscriptionKey) as ITranslatorClient
-                    : new GoogleTranslatorClient(translatorSubscriptionKey);
+                    ? new MicrosoftTranslatorClient(translatorSubscriptionKey)
+                    : new GoogleTranslatorClient(translatorSubscriptionKey)
+                    as ITranslatorClient;
 
                 var ulisClient = new UlisClient(translatorClient,
                     config["LuisModelId"], config["LuisSubscriptionKey"], config["LuisDomain"]);
