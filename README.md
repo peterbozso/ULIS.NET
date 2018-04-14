@@ -21,11 +21,11 @@ Useful tool for (initial) training of your LUIS model.
 Configure your keys in [appsettings.json](https://github.com/peterbozso/ULIS.NET/blob/master/Ulis.Net/Ulis.Net.BulkImport/appsettings.json).
 For more details, please refer to [this article](https://www.microsoft.com/developerblog/2017/01/14/building-luis-models-for-unsupported-languages-with-machine-translation/).
 ### Ulis.Net.Dialog
-#### .NET Framework 4.6.1 class library
+#### .NET Framework 4.7.1 class library
 Contains the UlisDialog class and every other helper classes that's needed to make it work.
-Note that if you want to use it in your own bot, you have to target at least .NET Framework 4.6.1.
+Note that if you want to use it in your own bot, you have to target .NET Framework 4.7.1.
 ### Ulis.Net.TrainBot
-#### .NET Framework 4.6.1 chatbot
+#### .NET Framework 4.7.1 chatbot
 A simple bot using the C# SDK that can be used for ongoing training of your bot.
 Configure your keys in [Web.config](https://github.com/peterbozso/ULIS.NET/blob/master/Ulis.Net/Ulis.Net.TrainBot/Web.config).
 For more details, please refer to [this article](https://www.microsoft.com/developerblog/2017/01/14/building-luis-models-for-unsupported-languages-with-machine-translation/).
@@ -48,8 +48,9 @@ For more details, please refer to [this article](https://www.microsoft.com/devel
 ### Ulis.Net.Dialog
 ```csharp
 using Ulis.Net.Dialog;
+using Ulis.Net.Dialog.Attributes;
 
-[UlisTranslator(TranslationProvider.Microsoft, "Your Microsoft Translator Text API key")]
+[MicrosoftTranslator("Your Microsoft Translator Text API key")]
 [LuisModel("Your LUIS model ID", "Your LUIS subscription key")]
 [Serializable]
 public class RootDialog : UlisDialog<object>
