@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Cloud.Translation.V2" Version="1.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Refit" Version="4.3.0" />
   </ItemGroup>
 
