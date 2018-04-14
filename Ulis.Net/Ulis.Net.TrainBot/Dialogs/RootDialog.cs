@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Web.Configuration;
 using Ulis.Net.Dialog;
+using Ulis.Net.Dialog.Translators;
 
 namespace Ulis.Net.TrainBot.Dialogs
 {

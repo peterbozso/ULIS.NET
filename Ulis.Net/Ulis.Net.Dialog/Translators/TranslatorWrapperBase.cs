@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Ulis.Net.Library;
 
-namespace Ulis.Net.Dialog
+namespace Ulis.Net.Dialog.Translators
 {
     /// <summary>
     /// Needed because of this: https://github.com/dotnet/standard/issues/300

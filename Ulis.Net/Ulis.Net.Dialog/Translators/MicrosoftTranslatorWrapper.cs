@@ -1,7 +1,7 @@
 ﻿using System;
 using Ulis.Net.Library;
 
-namespace Ulis.Net.Dialog
+namespace Ulis.Net.Dialog.Translators
 {
     [Serializable]
     public class MicrosoftTranslatorWrapper : TranslatorWrapperBase

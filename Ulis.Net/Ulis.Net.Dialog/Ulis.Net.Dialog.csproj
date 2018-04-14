@@ -47,12 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GoogleTranslatorWrapper.cs" />
-    <Compile Include="MicrosoftTranslatorWrapper.cs" />
+    <Compile Include="Attributes\GoogleTranslatorAttribute.cs" />
+    <Compile Include="Translators\GoogleTranslatorWrapper.cs" />
+    <Compile Include="Attributes\MicrosoftTranslatorAttribute.cs" />
+    <Compile Include="Translators\MicrosoftTranslatorWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TranslatorWrapperBase.cs" />
+    <Compile Include="Attributes\TranslatorAttributeBase.cs" />
+    <Compile Include="Translators\TranslatorWrapperBase.cs" />
     <Compile Include="UlisDialog.cs" />
-    <Compile Include="UlisTranslatorAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -6,6 +6,8 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Ulis.Net.Dialog.Attributes;
+using Ulis.Net.Dialog.Translators;
 using Ulis.Net.Library;
 
 namespace Ulis.Net.Dialog
@@ -17,13 +19,11 @@ namespace Ulis.Net.Dialog
 
         public UlisDialog(TranslatorWrapperBase translator = null, params ILuisService[] services) : base(services)
         {
-            //if (translator == null)
-            //{
-            //    var translatorAttribute =
-            //        GetType().GetCustomAttributes<UlisTranslatorAttribute>(inherit: true).FirstOrDefault();
-            //    translator = new TranslatorClientSerializationWrapper(
-            //        translatorAttribute.TranslationProvider, translatorAttribute.SubscriptionKey);
-            //}
+            if (translator == null)
+            {
+                var translatorAttribute = GetType().GetCustomAttributes<TranslatorAttributeBase>(inherit: true).FirstOrDefault();
+                translator = translatorAttribute.TranslatorWrapper;
+            }
 
             SetField.NotNull(out _translator, nameof(translator), translator);
         }
