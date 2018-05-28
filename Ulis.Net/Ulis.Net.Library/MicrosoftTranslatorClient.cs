@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Xml.Serialization;
 
 namespace Ulis.Net.Library
@@ -26,9 +27,11 @@ namespace Ulis.Net.Library
             {
                 client.DefaultRequestHeaders.TryAddWithoutValidation(SubscriptionKeyHeader, _subscriptionKey);
 
+                var escapedText = HttpUtility.UrlEncode(text);
+
                 var uri = new UriBuilder(MicrosoftTranslatorApiUrlBase)
                 {
-                    Query = $"text={text}&to={TargetLanguage}"
+                    Query = $"text={escapedText}&to={TargetLanguage}"
                 }.Uri;
 
                 var translatedXml = await client.GetStringAsync(uri);
