@@ -1,23 +1,34 @@
-﻿using Refit;
+﻿using Newtonsoft.Json;
+using Refit;
 using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace Ulis.Net.Library
 {
+    internal class MicrosoftTranslatorResult
+    {
+        [JsonProperty(PropertyName = "translations")]
+        public List<MicrosoftTranslatorText> Translations { get; set; }
+    }
+
+    internal class MicrosoftTranslatorText
+    {
+        [JsonProperty(PropertyName = "text")]
+        public string Text { get; set; }
+    }
+
     internal interface IMicrosoftTranslatorApi
     {
-        [Get(@"/Translate?text={text}&to={targetLanguage}")]
-        Task<string> Translate(string text, string targetLanguage);
+        [Post(@"/translate?api-version=3.0&to={targetLanguage}")]
+        Task<string> Translate(string targetLanguage, [Body] MicrosoftTranslatorText[] text);
     }
 
     public class MicrosoftTranslatorClient : ITranslatorClient
     {
-        private const string MicrosoftTranslatorApiUrlBase = "https://api.microsofttranslator.com/V2/Http.svc/";
+        private const string MicrosoftTranslatorApiUrlBase = "https://api.cognitive.microsofttranslator.com/";
         private const string SubscriptionKeyHeader = "Ocp-Apim-Subscription-Key";
-        private const string XmlDefaultNamespace = "http://schemas.microsoft.com/2003/10/Serialization/";
         private const string TargetLanguage = "en";
 
         private readonly IMicrosoftTranslatorApi _microsoftTranslatorApi;
@@ -31,13 +42,10 @@ namespace Ulis.Net.Library
 
         public async Task<string> TranslateAsync(string text)
         {
-            var translatedXml = await _microsoftTranslatorApi.Translate(text, TargetLanguage);
-
-            var xmlSerializer = new XmlSerializer(typeof(string), XmlDefaultNamespace);
-            using (var reader = new StringReader(translatedXml))
-            {
-                return (string)xmlSerializer.Deserialize(reader);
-            }
+            var jsonResult = await _microsoftTranslatorApi.Translate(TargetLanguage,
+                new [] { new MicrosoftTranslatorText { Text = text } });
+            var translatorResult = JsonConvert.DeserializeObject<MicrosoftTranslatorResult[]>(jsonResult);
+            return translatorResult[0].Translations[0].Text;
         }
     }
 }
