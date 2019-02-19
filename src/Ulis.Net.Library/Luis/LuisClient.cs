@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Refit;
+using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Ulis.Net.Library.Luis
@@ -21,8 +23,9 @@ namespace Ulis.Net.Library.Luis
 
         private string LuisApiUrlBase => $"https://{_domain}/luis/v2.0/apps/";
 
-        public LuisClient(string modelId, string subscriptionKey, string domain = "westus.api.cognitive.microsoft.com",
-            bool staging = false, bool verbose = false, int timezoneOffset = 0)
+        public LuisClient(HttpClient httpClient, string modelId, string subscriptionKey,
+            string domain = "westus.api.cognitive.microsoft.com", bool staging = false,
+            bool verbose = false, int timezoneOffset = 0)
         {
             _modelId = modelId;
             _subscriptionKey = subscriptionKey;
@@ -31,7 +34,8 @@ namespace Ulis.Net.Library.Luis
             _verbose = verbose;
             _timezoneOffset = timezoneOffset;
 
-            _luisApi = RestService.For<ILuisApi>(LuisApiUrlBase);
+            httpClient.BaseAddress = new Uri(LuisApiUrlBase);
+            _luisApi = RestService.For<ILuisApi>(httpClient);
         }
 
         public async Task<LuisResult> QueryAsync(string query)

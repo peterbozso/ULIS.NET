@@ -2,6 +2,7 @@
 using CsvHelper;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Ulis.Net.Library;
@@ -35,7 +36,7 @@ namespace Ulis.Net.BulkImport
                     : new GoogleTranslatorClient(translatorSubscriptionKey)
                     as ITranslatorClient;
 
-                var ulisClient = new UlisClient(translatorClient,
+                var ulisClient = new UlisClient(new HttpClient(), translatorClient,
                     config["LuisModelId"], config["LuisSubscriptionKey"], config["LuisDomain"]);
                 
                 using (var outputCsv = new CsvWriter(new StreamWriter(File.Create(config["OutputCsv"]), Encoding.UTF8)))
