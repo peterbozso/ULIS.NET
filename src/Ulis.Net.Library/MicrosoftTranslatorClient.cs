@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Ulis.Net.Library
 {
-    internal class MicrosoftTranslatorResult
+    internal interface IMicrosoftTranslatorApi
     {
-        [JsonProperty(PropertyName = "translations")]
-        public List<MicrosoftTranslatorText> Translations { get; set; }
+        [Post(@"/translate?api-version=3.0&to={targetLanguage}")]
+        Task<string> Translate(string targetLanguage, [Body] MicrosoftTranslatorText[] text);
     }
 
     internal class MicrosoftTranslatorText
@@ -19,14 +19,14 @@ namespace Ulis.Net.Library
         public string Text { get; set; }
     }
 
-    internal interface IMicrosoftTranslatorApi
-    {
-        [Post(@"/translate?api-version=3.0&to={targetLanguage}")]
-        Task<string> Translate(string targetLanguage, [Body] MicrosoftTranslatorText[] text);
-    }
-
     public class MicrosoftTranslatorClient : ITranslatorClient
     {
+        private class MicrosoftTranslatorResult
+        {
+            [JsonProperty(PropertyName = "translations")]
+            public List<MicrosoftTranslatorText> Translations { get; set; }
+        }
+
         private const string MicrosoftTranslatorApiUrlBase = "https://api.cognitive.microsofttranslator.com/";
         private const string SubscriptionKeyHeader = "Ocp-Apim-Subscription-Key";
         private const string TargetLanguage = "en";
