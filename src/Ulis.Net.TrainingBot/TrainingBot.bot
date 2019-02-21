@@ -1,15 +1,35 @@
-﻿{
-  "name": "Ulis.Net.TrainingBot",
-  "services": [
-    {
-      "type": "endpoint",
-      "name": "development",
-      "endpoint": "http://localhost:3978/api/messages",
-      "appId": "",
-      "appPassword": "",
-      "id": "1"
-    }
-  ],
-  "padlock": "",
-  "version": "2.0"
+{
+    "name": "Ulis.Net.TrainingBot",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "name": "development",
+            "endpoint": "http://localhost:3978/api/messages",
+            "appId": "",
+            "appPassword": "",
+            "id": "1"
+        },
+        {
+            "type": "luis",
+            "name": "luis",
+            "appId": "",
+            "version": "",
+            "authoringKey": "",
+            "subscriptionKey": "",
+            "region": "",
+            "id": "197"
+        },
+        {
+            "type": "generic",
+            "name": "microsoft-translator",
+            "url": "https://www.microsoft.com/en-us/translator/business/translator-api/",
+            "configuration": {
+                "key": ""
+            },
+            "id": "186"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0"
 }

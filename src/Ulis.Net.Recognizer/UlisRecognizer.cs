@@ -9,7 +9,7 @@ using Ulis.Net.Library;
 
 namespace Ulis.Net.Recognizer
 {
-    internal class UlisRecognizer : LuisRecognizer, IRecognizer
+    public class UlisRecognizer : LuisRecognizer, IRecognizer
     {
         private readonly ITranslatorClient _translatorClient;
 
