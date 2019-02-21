@@ -11,20 +11,48 @@ namespace Ulis.Net.Recognizer
 {
     internal class UlisRecognizer : LuisRecognizer, IRecognizer
     {
-        private readonly ITranslatorClient _translator;
+        private readonly ITranslatorClient _translatorClient;
 
-        public UlisRecognizer(LuisApplication application, ITranslatorClient translator,
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UlisRecognizer"/> class.
+        /// </summary>
+        /// <param name="application">The LUIS application to use to recognize text.</param>
+        /// <param name="translatorClient">Implementation of the <see cref="ITranslatorClient"/> interface that will do the translation before sending the text to LUIS.</param>
+        /// <param name="predictionOptions">(Optional) The LUIS prediction options to use. Spell checking options will be ignored, because doing spell checking after translation and before LUIS could skew the results. Spell checking should be done before using this recognizer.</param>
+        /// <param name="includeApiResults">(Optional) TRUE to include raw LUIS API response.</param>
+        /// <param name="clientHandler">(Optional) Custom handler for LUIS API calls to allow mocking.</param>
+        public UlisRecognizer(LuisApplication application, ITranslatorClient translatorClient,
             LuisPredictionOptions predictionOptions = null, bool includeApiResults = false, HttpClientHandler clientHandler = null)
             : base(application, predictionOptions, includeApiResults, clientHandler)
         {
-            _translator = translator;
+            _translatorClient = translatorClient;
+
+            if (predictionOptions != null)
+            {
+                predictionOptions.BingSpellCheckSubscriptionKey = null;
+                predictionOptions.SpellCheck = false;
+            }
         }
 
-        public UlisRecognizer(LuisService service, ITranslatorClient translator,
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UlisRecognizer"/> class.
+        /// </summary>
+        /// <param name="service">The LUIS service from configuration.</param>
+        /// <param name="translatorClient">Implementation of the <see cref="ITranslatorClient"/> interface that will do the translation before sending the text to LUIS.</param>
+        /// <param name="predictionOptions">(Optional) The LUIS prediction options to use. Spell checking options will be ignored, because doing spell checking after translation and before LUIS could skew the results. Spell checking should be done before using this recognizer.</param>
+        /// <param name="includeApiResults">(Optional) TRUE to include raw LUIS API response.</param>
+        /// <param name="clientHandler">(Optional) Custom handler for LUIS API calls to allow mocking.</param>
+        public UlisRecognizer(LuisService service, ITranslatorClient translatorClient,
             LuisPredictionOptions predictionOptions = null, bool includeApiResults = false, HttpClientHandler clientHandler = null)
             : base(service, predictionOptions, includeApiResults, clientHandler)
         {
-            _translator = translator;
+            _translatorClient = translatorClient;
+
+            if (predictionOptions != null)
+            {
+                predictionOptions.BingSpellCheckSubscriptionKey = null;
+                predictionOptions.SpellCheck = false;
+            }
         }
 
         public new async Task<RecognizerResult> RecognizeAsync(ITurnContext turnContext, CancellationToken cancellationToken)
@@ -35,7 +63,7 @@ namespace Ulis.Net.Recognizer
                 return null;
             }
             
-            var translatedUtterance = await _translator.TranslateAsync(utterance).ConfigureAwait(false);
+            var translatedUtterance = await _translatorClient.TranslateAsync(utterance).ConfigureAwait(false);
             turnContext.Activity.Text = translatedUtterance;
 
             var result = await base.RecognizeAsync(turnContext, cancellationToken).ConfigureAwait(false);
