@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ulis.Net.Library", "Ulis.Ne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ulis.Net.BulkImport", "Ulis.Net.BulkImport\Ulis.Net.BulkImport.csproj", "{64A7FE0D-DBA4-40FD-B4E1-A48FD1C32D2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ulis.Net.Recognizer", "Ulis.Net.Recognizer\Ulis.Net.Recognizer.csproj", "{5DAE374B-C13E-4531-A5EA-5EE8CCC75F61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ulis.Net.Recognizer", "Ulis.Net.Recognizer\Ulis.Net.Recognizer.csproj", "{5DAE374B-C13E-4531-A5EA-5EE8CCC75F61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ulis.Net.TrainingBot", "Ulis.Net.TrainingBot\Ulis.Net.TrainingBot.csproj", "{8F330E55-613D-4825-B032-33F694BCEE98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{5DAE374B-C13E-4531-A5EA-5EE8CCC75F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DAE374B-C13E-4531-A5EA-5EE8CCC75F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DAE374B-C13E-4531-A5EA-5EE8CCC75F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F330E55-613D-4825-B032-33F694BCEE98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F330E55-613D-4825-B032-33F694BCEE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F330E55-613D-4825-B032-33F694BCEE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F330E55-613D-4825-B032-33F694BCEE98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
