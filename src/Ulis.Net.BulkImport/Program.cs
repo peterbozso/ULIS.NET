@@ -6,7 +6,6 @@ using ConsoleProgressBar;
 using CsvHelper;
 using Microsoft.Extensions.Configuration;
 using Ulis.Net.Library;
-using Ulis.Net.Library.MicrosoftTranslator;
 
 namespace Ulis.Net.BulkImport
 {
