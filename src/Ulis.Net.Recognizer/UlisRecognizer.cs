@@ -1,10 +1,10 @@
-﻿using Microsoft.Bot.Builder;
+﻿using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.AI.Luis;
 using Microsoft.Bot.Configuration;
 using Microsoft.Bot.Schema;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using Ulis.Net.Library;
 
 namespace Ulis.Net.Recognizer
@@ -21,8 +21,7 @@ namespace Ulis.Net.Recognizer
         /// <param name="predictionOptions">(Optional) The LUIS prediction options to use. Spell checking options will be ignored, because doing spell checking after translation and before LUIS could skew the results. Spell checking should be done before using this recognizer.</param>
         /// <param name="includeApiResults">(Optional) TRUE to include raw LUIS API response.</param>
         /// <param name="clientHandler">(Optional) Custom handler for LUIS API calls to allow mocking.</param>
-        public UlisRecognizer(LuisApplication application, ITranslatorClient translatorClient,
-            LuisPredictionOptions predictionOptions = null, bool includeApiResults = false, HttpClientHandler clientHandler = null)
+        public UlisRecognizer(LuisApplication application, ITranslatorClient translatorClient, LuisPredictionOptions predictionOptions = null, bool includeApiResults = false, HttpClientHandler clientHandler = null)
             : base(application, predictionOptions, includeApiResults, clientHandler)
         {
             _translatorClient = translatorClient;
@@ -42,8 +41,7 @@ namespace Ulis.Net.Recognizer
         /// <param name="predictionOptions">(Optional) The LUIS prediction options to use. Spell checking options will be ignored, because doing spell checking after translation and before LUIS could skew the results. Spell checking should be done before using this recognizer.</param>
         /// <param name="includeApiResults">(Optional) TRUE to include raw LUIS API response.</param>
         /// <param name="clientHandler">(Optional) Custom handler for LUIS API calls to allow mocking.</param>
-        public UlisRecognizer(LuisService service, ITranslatorClient translatorClient,
-            LuisPredictionOptions predictionOptions = null, bool includeApiResults = false, HttpClientHandler clientHandler = null)
+        public UlisRecognizer(LuisService service, ITranslatorClient translatorClient, LuisPredictionOptions predictionOptions = null, bool includeApiResults = false, HttpClientHandler clientHandler = null)
             : base(service, predictionOptions, includeApiResults, clientHandler)
         {
             _translatorClient = translatorClient;
@@ -62,7 +60,7 @@ namespace Ulis.Net.Recognizer
             {
                 return null;
             }
-            
+
             var translatedUtterance = await _translatorClient.TranslateAsync(utterance).ConfigureAwait(false);
             turnContext.Activity.Text = translatedUtterance;
 

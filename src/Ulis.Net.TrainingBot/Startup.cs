@@ -8,7 +8,7 @@ using Microsoft.Bot.Configuration;
 using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Ulis.Net.Library;
+using Ulis.Net.Library.MicrosoftTranslator;
 using Ulis.Net.Recognizer;
 
 namespace Ulis.Net.TrainingBot
@@ -25,9 +25,16 @@ namespace Ulis.Net.TrainingBot
 
             Configuration = builder.Build();
         }
-        
+
         public IConfiguration Configuration { get; }
-        
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseDefaultFiles()
+                .UseStaticFiles()
+                .UseBotFramework();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
@@ -50,9 +57,7 @@ namespace Ulis.Net.TrainingBot
                 luisService,
                 new MicrosoftTranslatorClient(
                     sp.GetRequiredService<IHttpClientFactory>().CreateClient(),
-                    microsoftTranslatorService.Configuration["key"]
-                )
-            ));
+                    microsoftTranslatorService.Configuration["key"])));
 
             services.AddBot<TrainingBot>(options =>
             {
@@ -68,14 +73,7 @@ namespace Ulis.Net.TrainingBot
                 {
                     await context.SendActivityAsync("Sorry, it looks like something went wrong.");
                 };
-           });
-        }
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseDefaultFiles()
-                .UseStaticFiles()
-                .UseBotFramework();
+            });
         }
     }
 }

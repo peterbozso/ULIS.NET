@@ -1,19 +1,20 @@
-﻿using ConsoleProgressBar;
-using CsvHelper;
-using Microsoft.Extensions.Configuration;
-using System.IO;
+﻿using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleProgressBar;
+using CsvHelper;
+using Microsoft.Extensions.Configuration;
 using Ulis.Net.Library;
+using Ulis.Net.Library.MicrosoftTranslator;
 
 namespace Ulis.Net.BulkImport
 {
     internal class Program
     {
-        private const string SettingsFileName = "appsettings.json";
         private const string Column0Header = "Original text";
         private const string Column1Header = "Translated text";
+        private const string SettingsFileName = "appsettings.json";
 
         private static void Main(string[] args)
         {
@@ -36,9 +37,8 @@ namespace Ulis.Net.BulkImport
                     : new GoogleTranslatorClient(translatorSubscriptionKey)
                     as ITranslatorClient;
 
-                var ulisClient = new UlisClient(new HttpClient(), translatorClient,
-                    config["LuisModelId"], config["LuisSubscriptionKey"], config["LuisDomain"]);
-                
+                var ulisClient = new UlisClient(new HttpClient(), translatorClient, config["LuisModelId"], config["LuisSubscriptionKey"], config["LuisDomain"]);
+
                 using (var outputCsv = new CsvWriter(new StreamWriter(File.Create(config["OutputCsv"]), Encoding.UTF8)))
                 {
                     outputCsv.WriteField(Column0Header);

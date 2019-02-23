@@ -6,11 +6,6 @@ namespace Ulis.Net.TrainingBot
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            BuildWebHost(args).Run();
-        }
-
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureLogging((hostingContext, logging) =>
@@ -19,5 +14,10 @@ namespace Ulis.Net.TrainingBot
                 })
                 .UseStartup<Startup>()
                 .Build();
+
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
     }
 }

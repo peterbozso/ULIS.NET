@@ -9,8 +9,7 @@ namespace Ulis.Net.Library
         private readonly LuisClient _luisClient;
         private readonly ITranslatorClient _translatorClient;
 
-        public UlisClient(HttpClient httpClient, ITranslatorClient translatorClient,
-            string luisModelId, string luisSubscriptionKey, string luisDomain)
+        public UlisClient(HttpClient httpClient, ITranslatorClient translatorClient, string luisModelId, string luisSubscriptionKey, string luisDomain)
         {
             _translatorClient = translatorClient;
             _luisClient = new LuisClient(httpClient, luisModelId, luisSubscriptionKey, luisDomain);
