@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ulis.Net.Library\Ulis.Net.Library.csproj" />
+    <ProjectReference Include="..\Ulis.Net.Recognizer\Ulis.Net.Recognizer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

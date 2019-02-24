@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Ulis.Net.Library
+namespace Ulis.Net.Recognizer.Translation
 {
     public interface ITranslatorClient
     {

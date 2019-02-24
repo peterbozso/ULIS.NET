@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Google.Cloud.Translation.V2;
 
-namespace Ulis.Net.Library
+namespace Ulis.Net.Recognizer.Translation
 {
     public class GoogleTranslatorClient : ITranslatorClient
     {

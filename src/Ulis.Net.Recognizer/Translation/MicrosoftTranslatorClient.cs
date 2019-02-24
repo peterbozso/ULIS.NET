@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Ulis.Net.Library
+namespace Ulis.Net.Recognizer.Translation
 {
     public class MicrosoftTranslatorClient : ITranslatorClient
     {

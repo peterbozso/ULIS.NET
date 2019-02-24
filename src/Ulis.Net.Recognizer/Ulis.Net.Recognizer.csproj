@@ -7,16 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Cloud.Translation.V2" Version="1.1.0" />
     <PackageReference Include="Microsoft.Bot.Builder" Version="4.2.2" />
     <PackageReference Include="Microsoft.Bot.Builder.AI.Luis" Version="4.2.2" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-rc.108">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Ulis.Net.Library\Ulis.Net.Library.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,8 +8,8 @@ using Microsoft.Bot.Configuration;
 using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Ulis.Net.Library;
 using Ulis.Net.Recognizer;
+using Ulis.Net.Recognizer.Translation;
 
 namespace Ulis.Net.TrainingBot
 {

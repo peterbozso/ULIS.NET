@@ -5,7 +5,7 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.AI.Luis;
 using Microsoft.Bot.Configuration;
 using Microsoft.Bot.Schema;
-using Ulis.Net.Library;
+using Ulis.Net.Recognizer.Translation;
 
 namespace Ulis.Net.Recognizer
 {

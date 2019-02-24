@@ -1,11 +1,17 @@
 ﻿using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using ConsoleProgressBar;
 using CsvHelper;
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Adapters;
+using Microsoft.Bot.Builder.AI.Luis;
+using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Configuration;
-using Ulis.Net.Library;
+using Ulis.Net.Recognizer;
+using Ulis.Net.Recognizer.Translation;
 
 namespace Ulis.Net.BulkImport
 {
@@ -14,6 +20,20 @@ namespace Ulis.Net.BulkImport
         private const string Column0Header = "Original text";
         private const string Column1Header = "Translated text";
         private const string SettingsFileName = "appsettings.json";
+
+        private static TurnContext GetContext(string utterance)
+        {
+            var adapter = new TestAdapter();
+            var activity = new Activity
+            {
+                Type = ActivityTypes.Message,
+                Text = utterance,
+                Conversation = new ConversationAccount(),
+                Recipient = new ChannelAccount(),
+                From = new ChannelAccount()
+            };
+            return new TurnContext(adapter, activity);
+        }
 
         private static void Main(string[] args)
         {
@@ -36,7 +56,9 @@ namespace Ulis.Net.BulkImport
                     : new GoogleTranslatorClient(translatorSubscriptionKey)
                     as ITranslatorClient;
 
-                var ulisClient = new UlisClient(new HttpClient(), translatorClient, config["LuisModelId"], config["LuisSubscriptionKey"], config["LuisDomain"]);
+                var luisApplication = new LuisApplication(config["LuisAppId"], config["LuisEndpointKey"], config["LuisEndpoint"]);
+
+                var ulisRecognizer = new UlisRecognizer(luisApplication, translatorClient);
 
                 using (var outputCsv = new CsvWriter(new StreamWriter(File.Create(config["OutputCsv"]), Encoding.UTF8)))
                 {
@@ -49,10 +71,10 @@ namespace Ulis.Net.BulkImport
                     var processedCount = 0;
                     foreach (var inputLine in inputLines)
                     {
-                        var result = await ulisClient.QueryAsync(inputLine);
+                        var result = await ulisRecognizer.RecognizeAsync(GetContext(inputLine), CancellationToken.None);
 
-                        outputCsv.WriteField(result.OriginalQuery);
-                        outputCsv.WriteField(result.LuisResult.Query);
+                        outputCsv.WriteField(result.Text);
+                        outputCsv.WriteField(result.AlteredText);
                         outputCsv.NextRecord();
 
                         processedCount++;
