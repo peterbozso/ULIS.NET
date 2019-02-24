@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,16 +9,17 @@ namespace Ulis.Net.Recognizer.Translation
 {
     public class MicrosoftTranslatorClient : ITranslatorClient
     {
-        private const string _uri = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=en";
-
         private readonly HttpClient _httpClient;
-        private readonly string _subscriptionKey;
+        private readonly string _subscriptionKey, _sourceLanguage;
 
-        public MicrosoftTranslatorClient(HttpClient httpClient, string subscriptionKey)
+        public MicrosoftTranslatorClient(HttpClient httpClient, string subscriptionKey, string sourceLangugage)
         {
             _httpClient = httpClient;
             _subscriptionKey = subscriptionKey;
+            _sourceLanguage = sourceLangugage;
         }
+
+        private string Uri => $"https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=en&from={_sourceLanguage}";
 
         public async Task<string> TranslateAsync(string text)
         {
@@ -25,7 +27,7 @@ namespace Ulis.Net.Recognizer.Translation
             {
                 request.Method = HttpMethod.Post;
 
-                request.RequestUri = new Uri(_uri);
+                request.RequestUri = new Uri(Uri);
 
                 request.Headers.Add("Ocp-Apim-Subscription-Key", _subscriptionKey);
 

@@ -25,7 +25,8 @@
             "name": "microsoft-translator",
             "url": "https://www.microsoft.com/en-us/translator/business/translator-api/",
             "configuration": {
-                "key": ""
+                "key": "",
+                "sourceLanguage": ""
             },
             "id": "186"
         }

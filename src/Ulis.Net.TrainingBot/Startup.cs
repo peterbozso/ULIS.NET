@@ -57,7 +57,8 @@ namespace Ulis.Net.TrainingBot
                 luisService,
                 new MicrosoftTranslatorClient(
                     sp.GetRequiredService<IHttpClientFactory>().CreateClient(),
-                    microsoftTranslatorService.Configuration["key"])));
+                    microsoftTranslatorService.Configuration["key"],
+                    microsoftTranslatorService.Configuration["sourceLanguage"])));
 
             services.AddBot<TrainingBot>(options =>
             {

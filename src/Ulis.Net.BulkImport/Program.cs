@@ -51,9 +51,10 @@ namespace Ulis.Net.BulkImport
                     .AddJsonFile(SettingsFileName).Build();
 
                 var translatorSubscriptionKey = config["TranslatorSubscriptionKey"];
+                var sourceLanguage = config["SourceLanguage"];
                 var translatorClient = config["TranslatorProvider"] == "Microsoft"
-                    ? new MicrosoftTranslatorClient(new HttpClient(), translatorSubscriptionKey)
-                    : new GoogleTranslatorClient(translatorSubscriptionKey)
+                    ? new MicrosoftTranslatorClient(new HttpClient(), translatorSubscriptionKey, sourceLanguage)
+                    : new GoogleTranslatorClient(translatorSubscriptionKey, sourceLanguage)
                     as ITranslatorClient;
 
                 var luisApplication = new LuisApplication(config["LuisAppId"], config["LuisEndpointKey"], config["LuisEndpoint"]);
