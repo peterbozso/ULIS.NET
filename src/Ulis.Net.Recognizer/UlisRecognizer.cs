@@ -62,13 +62,15 @@ namespace Ulis.Net.Recognizer
             }
 
             var translatedUtterance = await _translatorClient.TranslateAsync(utterance).ConfigureAwait(false);
+
             turnContext.Activity.Text = translatedUtterance;
 
             var result = await base.RecognizeAsync(turnContext, cancellationToken).ConfigureAwait(false);
-            result.Text = utterance;
-            result.AlteredText = translatedUtterance;
 
             turnContext.Activity.Text = utterance;
+
+            result.Text = utterance;
+            result.AlteredText = translatedUtterance;
 
             return result;
         }
