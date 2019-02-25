@@ -35,8 +35,8 @@ namespace Ulis.Net.Recognizer.Translation
                 var requestBody = JsonConvert.SerializeObject(body);
                 request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
 
-                var response = await _httpClient.SendAsync(request);
-                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
+                var jsonResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 var definition = new[] { new { Translations = new[] { new { Text = string.Empty } } } };
                 var objectResponse = JsonConvert.DeserializeAnonymousType(jsonResponse, definition);
 

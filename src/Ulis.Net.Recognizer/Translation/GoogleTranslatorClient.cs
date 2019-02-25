@@ -16,7 +16,8 @@ namespace Ulis.Net.Recognizer.Translation
 
         public async Task<string> TranslateAsync(string text)
         {
-            var result = await _translationClient.TranslateTextAsync(text, LanguageCodes.English, _sourceLangugage);
+            var result = await _translationClient.TranslateTextAsync(
+                text, LanguageCodes.English, _sourceLangugage).ConfigureAwait(false);
             return result.TranslatedText;
         }
     }

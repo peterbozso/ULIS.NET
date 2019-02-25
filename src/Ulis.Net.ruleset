@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="ULIS.NET rules" Description="Code analysis rules for ULIS.NET" ToolsVersion="14.0">
+<RuleSet Name="ULIS.NET rules" Description="Solution-wide code analysis rules for ULIS.NET" ToolsVersion="14.0">
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="CS1591" Action="None" />
     <Rule Id="SA1101" Action="None" />

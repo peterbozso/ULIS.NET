@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="ULIS.NET Recongizer rules" Description="Code analysis rules for the Recognizer project of ULIS.NET" ToolsVersion="14.0">
+  <Include Path="..\Ulis.Net.ruleset" Action="Default" />
+  <Rules AnalyzerId="Microsoft.VisualStudio.Threading.Analyzers" RuleNamespace="Microsoft.VisualStudio.Threading.Analyzers">
+    <Rule Id="VSTHRD111" Action="Error" />
+  </Rules>
+</RuleSet>
